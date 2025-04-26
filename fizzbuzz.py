@@ -1,15 +1,13 @@
-def fizzbuzz(n):
-    result = []
-    for i in range(1, n + 1):
-        if i % 3 == 0 and i % 5 == 0:
-            result.append("FizzBuzz")
-        elif i % 3 == 0:
-            result.append("Fizz")
-        elif i % 5 == 0:
-            result.append("Buzz")
-        else:
-            result.append(str(i))
-    return "\n".join(result)
+def fizzbuzz(n: int) -> str:
+    if n % 3 == 0 and n % 5 == 0:
+        return "FizzBuzz"
+    elif n % 3 == 0:
+        return "Fizz"
+    elif n % 5 == 0:
+        return "Buzz"
+    else:
+        return str(n)
 
-# Exemplo de uso:
-print(fizzbuzz(100))
+if __name__ == "__main__":
+    for i in range(1, 101):
+        print(fizzbuzz(i))
