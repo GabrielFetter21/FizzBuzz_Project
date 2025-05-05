@@ -1,24 +1,41 @@
-import unittest
-from fizzbuzz import fizzbuzz
+from pytest import fixture
+import pytest
 
+from .fizz_buzz import FizzBuzz
 
-class TestFizzBuzz(unittest.TestCase):
-    def test_returns_number_for_normal_cases(self):
-        self.assertEqual(fizzbuzz(1), "1")
-        self.assertEqual(fizzbuzz(2), "2")
+@pytest.mark.parametrize("input_number, expected_output", [
+    (1, '1'),
+    (2, '2'),
+    (7, '7'),
+    (11, '11')
+])
+def test_print_number(input_number: int, expected_output: str):
+    assert FizzBuzz.find_string_to_print(input_number) == expected_output
 
-    def test_returns_fizz_for_multiples_of_3(self):
-        self.assertEqual(fizzbuzz(3), "Fizz")
-        self.assertEqual(fizzbuzz(6), "Fizz")
+@pytest.mark.parametrize("input_number", [
+    (3),
+    (6),
+    (12),
+    (18)
+])
+def test_print_Fizz(input_number: int):
+    assert FizzBuzz.find_string_to_print(input_number) == "Fizz"
 
-    def test_returns_buzz_for_multiples_of_5(self):
-        self.assertEqual(fizzbuzz(5), "Buzz")
-        self.assertEqual(fizzbuzz(10), "Buzz")
+@pytest.mark.parametrize("input_number", [
+    (5),
+    (10),
+    (20),
+    (25)
+])
+def test_print_Buzz(input_number):
+    assert FizzBuzz.find_string_to_print(input_number) == "Buzz"
 
-    def test_returns_fizzbuzz_for_multiples_of_3_and_5(self):
-        self.assertEqual(fizzbuzz(15), "FizzBuzz")
-        self.assertEqual(fizzbuzz(30), "FizzBuzz")
+@pytest.mark.parametrize("input_number", [
+    (15),
+    (30),
+    (45),
+    (60)
+])
+def test_print_FizzBuzz(input_number):
+    assert FizzBuzz.find_string_to_print(input_number) == "FizzBuzz"
 
-
-if __name__ == "__main__":
-    unittest.main()
